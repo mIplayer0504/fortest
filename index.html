@@ -524,13 +524,10 @@
     .panel { max-height: 90vh; }
     .panel-body { padding: 14px 16px; }
     .panel-header { padding: 16px; }
-  }
 
-  /* PWA 홈 화면 설치 시 — 상태바 safe area 보정 */
-  @media (display-mode: standalone) {
+    /* safe area — 브라우저에서는 0이라 영향 없음, PWA에서만 실제 값 적용 */
     header {
-      padding-top: calc(12px + env(safe-area-inset-top, 44px));
-      padding-bottom: 12px;
+      padding-top: calc(12px + env(safe-area-inset-top, 0px));
     }
     body {
       padding-bottom: env(safe-area-inset-bottom, 0px);
