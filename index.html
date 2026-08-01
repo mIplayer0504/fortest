@@ -525,6 +525,17 @@
     .panel-body { padding: 14px 16px; }
     .panel-header { padding: 16px; }
   }
+
+  /* PWA 홈 화면 설치 시 — 상태바 safe area 보정 */
+  @media (display-mode: standalone) {
+    header {
+      padding-top: calc(12px + env(safe-area-inset-top, 44px));
+      padding-bottom: 12px;
+    }
+    body {
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+  }
 </style>
 </head>
 <body>
