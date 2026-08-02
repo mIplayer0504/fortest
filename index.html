@@ -181,11 +181,12 @@
   .quiz-card.wrong   { border-color: var(--wrong); }
 
   .card-meta {
-    display: flex;
+    display: none;
     gap: 8px;
     margin-bottom: 20px;
     flex-wrap: wrap;
   }
+  .card-meta.visible { display: flex; }
   .meta-tag {
     font-size: 0.75rem;
     padding: 3px 10px;
@@ -578,7 +579,7 @@
     </div>
 
     <div class="quiz-card" id="quizCard">
-      <div class="card-meta" id="cardMeta" style="display:none"></div>
+      <div class="card-meta" id="cardMeta"></div>
       <div class="q-number" id="qNumber"></div>
       <div class="question-text" id="questionText"></div>
       <div class="type-hint" id="typeHint"></div>
@@ -730,7 +731,7 @@ function renderQuestion(q) {
     `<span class="meta-tag">${q.unit}</span>
      <span class="meta-tag">${q.subUnit}</span>
      <span class="meta-tag type">${q.type}</span>`;
-  document.getElementById('cardMeta').style.display = 'none';
+  document.getElementById('cardMeta').classList.remove('visible');
   document.getElementById('qNumber').textContent = `#${currentIdx + 1} / ${queue.length}`;
   document.getElementById('questionText').textContent = q.question;
   document.getElementById('typeHint').innerHTML = `정답 유형: <strong>${q.type}</strong>`;
@@ -806,7 +807,7 @@ function submitAnswer() {
   document.getElementById('actionRow').style.display = 'flex';
   document.getElementById('skipRow').style.display   = 'none';
   document.getElementById('hintRow').style.display   = 'none';
-  document.getElementById('cardMeta').style.display  = 'flex';
+  document.getElementById('cardMeta').classList.add('visible');
 
   updateStatsUI();
   updateStreakBadge();
