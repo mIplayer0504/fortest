@@ -730,6 +730,7 @@ function renderQuestion(q) {
     `<span class="meta-tag">${q.unit}</span>
      <span class="meta-tag">${q.subUnit}</span>
      <span class="meta-tag type">${q.type}</span>`;
+  document.getElementById('cardMeta').style.display = 'none';
   document.getElementById('qNumber').textContent = `#${currentIdx + 1} / ${queue.length}`;
   document.getElementById('questionText').textContent = q.question;
   document.getElementById('typeHint').innerHTML = `정답 유형: <strong>${q.type}</strong>`;
@@ -739,7 +740,9 @@ function renderQuestion(q) {
 
   document.getElementById('submitBtn').disabled = false;
   document.getElementById('submitBtn').textContent = '확인';
-  document.getElementById('feedback').className = 'feedback';
+  const fbEl = document.getElementById('feedback');
+  fbEl.className = 'feedback';
+  fbEl.style.display = 'none';
   document.getElementById('actionRow').style.display = 'none';
   document.getElementById('skipRow').style.display = 'block';
   document.getElementById('hintRow').style.display = 'block';
@@ -790,7 +793,8 @@ function submitAnswer() {
   else      { card.style.animation = 'pop 0.3s ease';  setTimeout(() => card.style.animation = '', 300); }
 
   const fb = document.getElementById('feedback');
-  fb.className = 'feedback show ' + (ok ? 'correct' : 'wrong');
+  fb.className = 'feedback ' + (ok ? 'correct' : 'wrong');
+  fb.style.display = 'flex';
   document.getElementById('fbIcon').textContent   = ok ? '✓' : '✗';
   document.getElementById('fbLabel').textContent  = ok ? '정답입니다!' : '오답입니다';
   const kingdomSuffix = (current.type === '왕' && current.kingdom) ? ` (${current.kingdom})` : '';
@@ -802,6 +806,7 @@ function submitAnswer() {
   document.getElementById('actionRow').style.display = 'flex';
   document.getElementById('skipRow').style.display   = 'none';
   document.getElementById('hintRow').style.display   = 'none';
+  document.getElementById('cardMeta').style.display  = 'flex';
 
   updateStatsUI();
   updateStreakBadge();
