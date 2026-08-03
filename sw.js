@@ -1,4 +1,4 @@
-const CACHE = 'haneung-v2';
+const CACHE = 'haneung-v3';
 const ASSETS = [
   './',
   './index.html',
